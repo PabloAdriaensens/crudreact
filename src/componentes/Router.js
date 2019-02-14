@@ -37,6 +37,7 @@ class Router extends Component {
                                 return (
                                     <Posts
                                         posts={this.state.posts}
+                                        borrarPost={this.borrarPost}
                                     />
                                 )
                             }}
@@ -47,11 +48,9 @@ class Router extends Component {
                                 const posts = this.state.posts;
 
                                 let filtro;
-
                                 filtro = posts.filter(post => (
-                                    post.id = idPost
+                                    post.id === Number(idPost)
                                 ));
-
                                 return (
                                     <SinglePost
                                         post={filtro[0]}
