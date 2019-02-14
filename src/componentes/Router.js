@@ -43,13 +43,21 @@ class Router extends Component {
                             />
                             <Route exact path="/post/:postId" render={(props) => {
                                 let idPost = props.location.pathname.replace('/post/', '');
+
+                                const posts = this.state.posts;
+
+                                let filtro;
+
+                                filtro = posts.filter(post => (
+                                    post.id = idPost
+                                ));
+
                                 return (
                                     <SinglePost
-
+                                        post={filtro[0]}
                                     />
                                 )
                             }}
-
                             />
                         </Switch>
                     </div>
