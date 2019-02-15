@@ -20,7 +20,7 @@ class Editar extends Component {
         console.log(post);
 
         // Enviar por props o petición de axios
-        // this.props.crearPost(post);
+        this.props.editarPost(post);
     };
 
     cargarFormulario = () => {

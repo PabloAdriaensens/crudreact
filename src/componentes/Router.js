@@ -46,7 +46,7 @@ class Router extends Component {
     crearPost = (post) => {
         axios.post(`https://jsonplaceholder.typicode.com/posts/`, {post})
             .then(res => {
-                if(res.status === 201) {
+                if (res.status === 201) {
                     Swal.fire(
                         '¡Post creado!',
                         '¡Se ha creado correctamente!',
@@ -58,6 +58,19 @@ class Router extends Component {
                     this.setState(prevState => ({
                         posts: [...prevState.posts, nuevoPost]
                     }))
+                }
+            })
+    };
+
+    editarPost = (postActualizado) => {
+        // console.log(postActualizado);
+
+        const {id} = postActualizado;
+
+        axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, {postActualizado})
+            .then(res => {
+                if(res.status === 200){
+                    this.obtenerPost();
                 }
             })
     };
@@ -115,6 +128,7 @@ class Router extends Component {
                                 return (
                                     <Editar
                                         post={filtro[0]}
+                                        editarPost={this.editarPost}
                                     />
                                 )
                             }}
