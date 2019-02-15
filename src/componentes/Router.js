@@ -7,6 +7,7 @@ import Navegacion from "./Navegacion";
 import Posts from "./Posts";
 import SinglePost from "./SinglePost";
 import Formulario from "./Formulario";
+import Editar from "./Editar";
 
 class Router extends Component {
 
@@ -98,6 +99,22 @@ class Router extends Component {
                                 return (
                                     <Formulario
                                         crearPost={this.crearPost}
+                                    />
+                                )
+                            }}
+                            />
+                            <Route exact path="/editar/:postId" render={(props) => {
+                                let idPost = props.location.pathname.replace('/editar/', '');
+
+                                const posts = this.state.posts;
+
+                                let filtro;
+                                filtro = posts.filter(post => (
+                                    post.id === Number(idPost)
+                                ));
+                                return (
+                                    <Editar
+                                        post={filtro[0]}
                                     />
                                 )
                             }}
