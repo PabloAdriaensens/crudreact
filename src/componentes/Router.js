@@ -25,6 +25,21 @@ class Router extends Component {
             })
     };
 
+    borrarPost = (id) => {
+        axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
+            .then(res => {
+                if(res.status === 200) {
+                    const posts = [...this.state.posts];
+                    let resultado = posts.filter(post => (
+                        post.id != id
+                    ));
+                    this.setState({
+                        posts: resultado
+                    })
+                }
+            })
+    };
+
     render() {
         return (
             <BrowserRouter>
