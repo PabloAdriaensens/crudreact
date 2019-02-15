@@ -46,6 +46,11 @@ class Router extends Component {
         axios.post(`https://jsonplaceholder.typicode.com/posts/`, {post})
             .then(res => {
                 if(res.status === 201) {
+                    Swal.fire(
+                        '¡Post creado!',
+                        '¡Se ha creado correctamente!',
+                        'success'
+                    )
                     let postId = {id: res.data.id};
                     const nuevoPost = Object.assign({}, res.data.post, postId)
 
