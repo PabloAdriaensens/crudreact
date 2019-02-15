@@ -70,7 +70,23 @@ class Router extends Component {
         axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, {postActualizado})
             .then(res => {
                 if(res.status === 200){
-                    this.obtenerPost();
+                    Swal.fire(
+                        'Post Actualizado',
+                        'Se ha guardado correctamente',
+                        'success'
+                    );
+
+                    let postId = res.data.id;
+
+                    const posts = [...this.state.posts];
+
+                    const postEditar = posts.findIndex(post => postId === post.id);
+
+                    posts[postEditar] = postActualizado;
+
+                    this.setState({
+                        posts
+                    })
                 }
             })
     };
