@@ -32,13 +32,17 @@ class Router extends Component {
                 if(res.status === 200) {
                     const posts = [...this.state.posts];
                     let resultado = posts.filter(post => (
-                        post.id != id
+                        post.id !== id
                     ));
                     this.setState({
                         posts: resultado
                     })
                 }
             })
+    };
+
+    crearPost = (post) => {
+        console.log(post)
     };
 
     render() {
@@ -74,8 +78,13 @@ class Router extends Component {
                                 )
                             }}
                             />
-                            <Route exact path="/crear" component={Formulario}
-
+                            <Route exact path="/crear" render={() => {
+                                return (
+                                    <Formulario
+                                        crearPost={this.crearPost}
+                                    />
+                                )
+                            }}
                             />
                         </Switch>
                     </div>
